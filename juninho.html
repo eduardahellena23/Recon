@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Tributária</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN for interactive charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <!-- Main Container -->
+    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-6xl mx-auto">
+        
+        <!-- Header Section with Logo -->
+        <header class="text-center mb-8">
+            <img src="ICONE (LOGO NOVO).jpg" alt="Logo do escritório" class="mx-auto h-12 mb-4 rounded-md">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Painel de Análise de Lucro Presumido</h1>
+            <p class="text-gray-600">Visualização de receitas e impostos para diferentes cenários.</p>
+        </header>
+        
+        <!-- Scenarios Container -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Cenário 1 -->
+            <div class="flex flex-col items-center bg-gray-50 p-6 rounded-lg shadow-sm">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Cenário 1</h2>
+                
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="bg-indigo-100 p-4 rounded-lg shadow-sm">
+                        <p class="text-sm font-medium text-indigo-800">Receita Mensal</p>
+                        <p id="receita-mensal-1" class="text-xl md:text-2xl font-bold text-indigo-900 mt-1">R$ 32.990.248,19</p>
+                    </div>
+                    <div class="bg-red-100 p-4 rounded-lg shadow-sm">
+                        <p class="text-sm font-medium text-red-800">Total de Impostos</p>
+                        <p id="total-impostos-1" class="text-xl md:text-2xl font-bold text-red-900 mt-1">R$ 5.762.833,71</p>
+                    </div>
+                </div>
+                
+                <div class="w-full max-w-xs mt-6">
+                    <canvas id="tax-chart-1"></canvas>
+                </div>
+
+                <!-- Tax Value Details -->
+                <div id="tax-details-1" class="w-full mt-4 p-4 bg-white rounded-lg shadow-sm">
+                    <h3 class="text-sm font-bold text-gray-700 mb-2">Valores Detalhados</h3>
+                    <ul class="text-sm text-gray-600 space-y-1"></ul>
+                </div>
+            </div>
+            
+            <!-- Cenário 2 -->
+            <div class="flex flex-col items-center bg-gray-50 p-6 rounded-lg shadow-sm">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Cenário 2</h2>
+                
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="bg-indigo-100 p-4 rounded-lg shadow-sm">
+                        <p class="text-sm font-medium text-indigo-800">Receita Mensal</p>
+                        <p id="receita-mensal-2" class="text-xl md:text-2xl font-bold text-indigo-900 mt-1">R$ 500.000,00</p>
+                    </div>
+                    <div class="bg-red-100 p-4 rounded-lg shadow-sm">
+                        <p class="text-sm font-medium text-red-800">Total de Impostos</p>
+                        <p id="total-impostos-2" class="text-xl md:text-2xl font-bold text-red-900 mt-1">R$ 243.293,20</p>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-xs mt-6">
+                    <canvas id="tax-chart-2"></canvas>
+                </div>
+
+                <!-- Tax Value Details -->
+                <div id="tax-details-2" class="w-full mt-4 p-4 bg-white rounded-lg shadow-sm">
+                    <h3 class="text-sm font-bold text-gray-700 mb-2">Valores Detalhados</h3>
+                    <ul class="text-sm text-gray-600 space-y-1"></ul>
+                </div>
+            </div>
+            
+            <!-- Cenário 3 -->
+            <div class="flex flex-col items-center bg-gray-50 p-6 rounded-lg shadow-sm">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Cenário 3</h2>
+                
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="bg-indigo-100 p-4 rounded-lg shadow-sm">
+                        <p class="text-sm font-medium text-indigo-800">Receita Mensal</p>
+                        <p id="receita-mensal-3" class="text-xl md:text-2xl font-bold text-indigo-900 mt-1">R$ 31.490.248,19</p>
+                    </div>
+                    <div class="bg-red-100 p-4 rounded-lg shadow-sm">
+                        <p class="text-sm font-medium text-red-800">Total de Impostos</p>
+                        <p id="total-impostos-3" class="text-xl md:text-2xl font-bold text-red-900 mt-1">R$ 5.499.883,71</p>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-xs mt-6">
+                    <canvas id="tax-chart-3"></canvas>
+                </div>
+
+                <!-- Tax Value Details -->
+                <div id="tax-details-3" class="w-full mt-4 p-4 bg-white rounded-lg shadow-sm">
+                    <h3 class="text-sm font-bold text-gray-700 mb-2">Valores Detalhados</h3>
+                    <ul class="text-sm text-gray-600 space-y-1"></ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript for Data Handling and Charting -->
+    <script>
+        window.onload = function() {
+            // Data from the user's spreadsheet, organized for easy access.
+            const taxData = {
+                scenario1: {
+                    receita: 32990248.19,
+                    impostos: {
+                        "PIS": { valor: 214436.61, aliquota: "0.65%" },
+                        "COFINS": { valor: 989707.45, aliquota: "3%" },
+                        "IRPJ": { valor: 1583531.91, aliquota: "4.8%" },
+                        "IRPJ (Adicional)": { valor: 1031687.94, aliquota: "10%" },
+                        "CSLL": { valor: 1031687.94, aliquota: "9%" },
+                        "Pró-labore": { valor: 1518.00, aliquota: "-" },
+                        "Contribuição Anual 20%": { valor: 3643.20, aliquota: "20%" }
+                    }
+                },
+                scenario2: {
+                    receita: 500000,
+                    impostos: {
+                        "PIS": { valor: 3250, aliquota: "0.65%" },
+                        "COFINS": { valor: 15000, aliquota: "3%" },
+                        "IRPJ": { valor: 24000, aliquota: "4.8%" },
+                        "IRPJ (Adicional)": { valor: 168000, aliquota: "10%" },
+                        "CSLL": { valor: 15000, aliquota: "9%" },
+                        "Pró-labore": { valor: 1518.00, aliquota: "-" },
+                        "Contribuição Anual 20%": { valor: 3643.20, aliquota: "20%" }
+                    }
+                },
+                scenario3: {
+                    receita: 31490248.19,
+                    impostos: {
+                        "PIS": { valor: 204686.61, aliquota: "0.65%" },
+                        "COFINS": { valor: 944707.45, aliquota: "3%" },
+                        "IRPJ": { valor: 1511531.91, aliquota: "4.8%" },
+                        "IRPJ (Adicional)": { valor: 983687.94, aliquota: "10%" },
+                        "CSLL": { valor: 944707.45, aliquota: "9%" },
+                        "Pró-labore": { valor: 1518.00, aliquota: "-" },
+                        "Contribuição Anual 20%": { valor: 3643.20, aliquota: "20%" }
+                    }
+                }
+            };
+
+            // Function to format numbers as currency (R$)
+            const formatCurrency = (number) => {
+                return new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(number);
+            };
+
+            // Function to create and render a chart for a given scenario
+            const createChartAndDetails = (scenarioNumber, data) => {
+                const ctx = document.getElementById(`tax-chart-${scenarioNumber}`).getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(data.impostos),
+                        datasets: [{
+                            data: Object.values(data.impostos).map(item => item.valor),
+                            backgroundColor: [
+                                '#4ade80', // green-400
+                                '#3b82f6', // blue-500
+                                '#f43f5e', // rose-500
+                                '#fde047', // yellow-300
+                                '#a78bfa',  // violet-400
+                                '#34d399', // emerald-400
+                                '#9ca3af' // gray-400
+                            ],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        family: 'Inter'
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed) {
+                                            label += formatCurrency(context.parsed);
+                                        }
+                                        return label;
+                                    }
+                                },
+                                bodyFont: {
+                                    family: 'Inter'
+                                },
+                                titleFont: {
+                                    family: 'Inter'
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Populate tax details section
+                const taxDetailsList = document.querySelector(`#tax-details-${scenarioNumber} ul`);
+                for (const imposto in data.impostos) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${imposto} (${data.impostos[imposto].aliquota}):</strong> ${formatCurrency(data.impostos[imposto].valor)}`;
+                    taxDetailsList.appendChild(li);
+                }
+            };
+
+            // Create a chart and populate details for each scenario
+            createChartAndDetails(1, taxData.scenario1);
+            createChartAndDetails(2, taxData.scenario2);
+            createChartAndDetails(3, taxData.scenario3);
+        };
+    </script>
+</body>
+</html>
